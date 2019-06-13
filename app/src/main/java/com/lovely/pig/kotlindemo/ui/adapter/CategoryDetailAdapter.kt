@@ -2,15 +2,21 @@ package com.lovely.pig.kotlindemo.ui.adapter
 
 import android.app.Activity
 import android.content.Context
+import android.content.Intent
+import android.support.v4.app.ActivityCompat
+import android.support.v4.app.ActivityOptionsCompat
+import android.support.v4.util.Pair
 import android.view.View
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestOptions
+import com.lovely.pig.kotlindemo.Constants
 import com.lovely.pig.kotlindemo.R
 import com.lovely.pig.kotlindemo.base.recyclerview.CommonAdapter
 import com.lovely.pig.kotlindemo.base.recyclerview.ViewHolder
 import com.lovely.pig.kotlindemo.durationFormat
 import com.lovely.pig.kotlindemo.glide.GlideApp
 import com.lovely.pig.kotlindemo.mvp.model.bean.HomeBean
+import com.lovely.pig.kotlindemo.ui.activity.VideoDetailActivity
 
 
 /**
@@ -64,18 +70,20 @@ class CategoryDetailAdapter(context: Context, dataList: ArrayList<HomeBean.Issue
      * @param view
      */
     private fun goToVideoPlayer(activity: Activity, view: View, itemData: HomeBean.Issue.Item) {
-//        val intent = Intent(activity, VideoDetailActivity::class.java)
-//        intent.putExtra(Constants.BUNDLE_VIDEO_DATA, itemData)
-//        intent.putExtra(VideoDetailActivity.Companion.TRANSITION, true)
-//        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
-//            val pair = Pair<View, String>(view, VideoDetailActivity.IMG_TRANSITION)
-//            val activityOptions = ActivityOptionsCompat.makeSceneTransitionAnimation(
-//                    activity, pair)
-//            ActivityCompat.startActivity(activity, intent, activityOptions.toBundle())
-//        } else {
-//            activity.startActivity(intent)
-//            activity.overridePendingTransition(R.anim.anim_in, R.anim.anim_out)
-//        }
+        val intent = Intent(activity, VideoDetailActivity::class.java)
+        intent.putExtra(Constants.BUNDLE_VIDEO_DATA, itemData)
+        intent.putExtra(VideoDetailActivity.TRANSITION, true)
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+            val pair = Pair<View, String>(view, VideoDetailActivity.IMG_TRANSITION)
+            val activityOptions = ActivityOptionsCompat.makeSceneTransitionAnimation(
+                    activity,
+                    pair
+            )
+            ActivityCompat.startActivity(activity, intent, activityOptions.toBundle())
+        } else {
+            activity.startActivity(intent)
+            activity.overridePendingTransition(R.anim.anim_in, R.anim.anim_out)
+        }
     }
 
 }

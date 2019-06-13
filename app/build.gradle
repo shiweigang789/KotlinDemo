@@ -77,7 +77,6 @@ dependencies {
     implementation rootProject.ext.networkLibs
     //Banner
     implementation 'cn.bingoogolapple:bga-banner:2.2.4@aar'
-
     // glide
     implementation rootProject.ext.otherLibs
     // APT dependencies(Kotlin内置的注解处理器)
@@ -88,5 +87,7 @@ dependencies {
     }
     //Google开源的一个布局控件
     implementation 'com.google.android:flexbox:1.0.0'
+    // 视屏播放器
+    implementation 'com.shuyu:GSYVideoPlayer:2.1.1'
 
 }

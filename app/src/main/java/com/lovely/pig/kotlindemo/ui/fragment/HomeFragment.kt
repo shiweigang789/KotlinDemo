@@ -97,7 +97,7 @@ class HomeFragment : BaseFragment(), HomeContract.View {
         Logger.d(homeBean)
 
         // Adapter
-        mHomeAdapter = activity?.let { HomeAdapter(it, homeBean.issueList[0].itemList) }
+        mHomeAdapter = activity?.run { HomeAdapter(this, homeBean.issueList[0].itemList) }
         //设置 banner 大小
         mHomeAdapter?.setBannerSize(homeBean.issueList[0].count)
 
